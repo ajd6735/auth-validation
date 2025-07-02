@@ -1,6 +1,6 @@
 package com.security.auth_validation;
 
-import com.security.auth_validation.model.User;
+import com.security.auth_validation.model.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +16,12 @@ public class RegistrationController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new AppUser());
         return "/register";
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") User user, Model model){
+    public String registerUser(@ModelAttribute("user") AppUser user, Model model){
         try{
             userService.registerUser(user);
             model.addAttribute("message", "Registration successful! Please login.");
